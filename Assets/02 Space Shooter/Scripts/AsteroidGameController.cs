@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using scripts;
@@ -17,19 +18,23 @@ namespace Scripts
         public Asteroid[] mediumAsteroids;
         public Asteroid[] smallAsteroids;
 
+        // contains the registered powerups
         public PowerUp[] powerUps;
 
         [SerializeField] private Vector3 maximumSpeed, maximumSpin;
         [SerializeField] private PlayerShip playerShip;
         [SerializeField] private Transform spawnAnchor;
+        // for changing the laser parameters, if taking the red pill
         [SerializeField] private Laser laser;
 
         private List<Asteroid> activeAsteroids;
         private List<PowerUp> activePowerUps;
         private Random random;
 
+        // ship health
         private float shipHP = 100f;
-
+        // if ship is invincible
+        private Boolean invincible = false;
         private void Start()
         {
             activeAsteroids = new List<Asteroid>();
@@ -41,6 +46,7 @@ namespace Scripts
                 SpawnAsteroid(bigAsteroids, Camera.main.OrthographicBounds());
             }
 
+            // spawn initial powerups
             for (var i = 0; i < 3; i++)
             {
                 SpawnPowerUps(powerUps, Camera.main.OrthographicBounds());
@@ -50,6 +56,10 @@ namespace Scripts
         private void Update()
         {
             ShipIntersection(playerShip.shipSprite);
+            if (activeAsteroids.Count == 0)
+            {
+                SceneManager.LoadScene("02 Won", LoadSceneMode.Single);
+            }
         }
 
         /// <summary>
@@ -103,6 +113,12 @@ namespace Scripts
             activeAsteroids.Add(newObject);
         }
         
+        /// <summary>
+        /// taken from above
+        /// </summary>
+        /// <param name="prefabs"></param>
+        /// <param name="inLocation"></param>
+        /// <param name="parent"></param>
         private void SpawnPowerUps(PowerUp[] prefabs, Bounds inLocation, Asteroid parent = null)
         {
             // get a random prefab from the list
@@ -195,6 +211,11 @@ namespace Scripts
             Destroy(laser.gameObject);
         }
 
+        
+        /// <summary>
+        /// Checks, if ship intersects with powerup or asteroid
+        /// </summary>
+        /// <param name="ship"></param>
         private void ShipIntersection(SpriteRenderer ship)
         {
             // :thinking: this could be solved very similarly to a laser intersection
@@ -207,48 +228,52 @@ namespace Scripts
             {
                 return;
             }
-            activeAsteroids.Remove(asteroid);
-            activePowerUps.Remove(powerUp);
-            
+
             // is powerup is hitted
             if (powerUp)
             {
                 switch (powerUp.powerUp)
                 {
-                    case PowerUpEnum.LASER:
-                        laser.enhanceLaserSize(0.2f);
-                        break;
                     case PowerUpEnum.SHOTS:
                         laser.enhanceLaserSpeed(100f);
+                        break;
+                    case PowerUpEnum.INVINCIBLE:
+                        StartCoroutine(makeShipInvincible());
                         break;
                     default:
                         Debug.Log("Nothing");
                         break;
                 }
+                activePowerUps.Remove(powerUp);
                 Destroy(powerUp.gameObject);
             }
 
-            // asteroid is hitted, take damage or DIE
+            // asteroid is hitted and ship haven't took the red pill
+            // take damage and show game over screen, if threshold is reached
             if (asteroid)
             {
-                switch (asteroid.asteroidSize)
+                if (!invincible)
                 {
-                    case AsteroidSize.Large:
-                        shipHP -= 50f;
-                        break;
-                    case AsteroidSize.Medium:
-                        shipHP -= 12.25f;
-                        break;
-                    case AsteroidSize.Small:
-                        shipHP -= 7.25f;
-                        break;
-                }
-                Destroy(asteroid.gameObject);
-                if (shipHP <= 0f)
-                {
-                    Destroy(playerShip);
-                    Destroy(ship);
-                    SceneManager.LoadScene("00 Game Over", LoadSceneMode.Single);
+                    switch (asteroid.asteroidSize)
+                    {
+                        case AsteroidSize.Large:
+                            shipHP -= 50f;
+                            break;
+                        case AsteroidSize.Medium:
+                            shipHP -= 12.25f;
+                            break;
+                        case AsteroidSize.Small:
+                            shipHP -= 7.25f;
+                            break;
+                    }
+                    activeAsteroids.Remove(asteroid);
+                    Destroy(asteroid.gameObject);
+                    if (shipHP <= 0f)
+                    {
+                        Destroy(playerShip);
+                        Destroy(ship);
+                        SceneManager.LoadScene("00 Game Over", LoadSceneMode.Single);
+                    }
                 }
             }
         }
@@ -278,6 +303,13 @@ namespace Scripts
 
             maximum.Scale(new Vector3(RandomValue(), RandomValue(), RandomValue()));
             return maximum;
+        }
+
+        private IEnumerator makeShipInvincible()
+        {
+            invincible = true;
+            yield return new WaitForSeconds(1.5f);
+            invincible = false;
         }
     }
 }

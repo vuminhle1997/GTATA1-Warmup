@@ -36,11 +36,10 @@ namespace Scripts
             _runGameController.LaserIntersection(sprite);
         }
 
-        public void enhanceLaserSize(float value)
-        {
-            sprite.size += new Vector2(value, 0f);
-        }
-
+        /// <summary>
+        /// enhance the laser speed by parameter "value"
+        /// </summary>
+        /// <param name="value"></param>
         public void enhanceLaserSpeed(float value)
         {
             bulletSpeed += value;

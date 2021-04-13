@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1216340241769576785}
   - component: {fileID: 1442091484544831765}
   m_Layer: 0
-  m_Name: updateLaserSize
+  m_Name: updateInvincible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,4 +116,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -3602501986951026330}
   movementObject: {fileID: -1216340241769576785}
-  powerUp: 0
+  powerUp: 3

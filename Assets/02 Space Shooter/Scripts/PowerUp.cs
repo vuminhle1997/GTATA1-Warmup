@@ -12,10 +12,14 @@ namespace scripts
         public PowerUpEnum powerUp;
     }
 
+    /// <summary>
+    /// powerup types
+    /// </summary>
     public enum PowerUpEnum
     {
         LASER,
         SHOTS,
-        HEALTH
+        HEALTH,
+        INVINCIBLE
     }
 }
