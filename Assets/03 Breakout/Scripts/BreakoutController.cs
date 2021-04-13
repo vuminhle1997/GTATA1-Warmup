@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scripts
 {
@@ -45,7 +46,7 @@ namespace Scripts
             {
                 // maybe this is a good entry point for a loss system, similarly no bricks -> win
                 Debug.Log("Game Over!");
-                Time.timeScale = 0f;
+                SceneManager.LoadScene("03 Game Over");
             }
         }
 
@@ -80,6 +81,13 @@ namespace Scripts
                         ball.transform.position = balls[0].transform.position;
                         ball.RigidBody.velocity = Vector2.Reflect(balls[0].RigidBody.velocity, Vector2.up);
                         balls.Add(ball);
+                        break;
+                    // custom fancy powerUp
+                    case UpgradeType.FasterBall:
+                        foreach (var obj in balls)
+                        {   
+                            obj.AccelerateInitialSpeed(15f);
+                        }
                         break;
                 }
 

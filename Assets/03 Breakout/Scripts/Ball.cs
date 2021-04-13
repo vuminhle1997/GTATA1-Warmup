@@ -50,5 +50,14 @@ namespace Scripts
                 Destroy(gameObject);
             }
         }
+
+        /// <summary>
+        /// Scaled the initial speed up or down, by adding the value parameter
+        /// </summary>
+        /// <param name="value"></param>
+        public void AccelerateInitialSpeed(float value)
+        {
+            initialSpeed += value;
+        }
     }
 }

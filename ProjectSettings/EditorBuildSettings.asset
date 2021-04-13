@@ -23,4 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/02 Space Shooter/Scenes/02 Won.unity
     guid: 7bce79f5ae4a9ba4e83699222debeba3
+  - enabled: 1
+    path: Assets/03 Breakout/Scenes/Breakout-Noob.unity
+    guid: 6c477dab7d2b7c84e8b7031b51465961
+  - enabled: 1
+    path: Assets/03 Breakout/Scenes/03 Winning Scene.unity
+    guid: 37b6e8e0b8b48384f860057791bcb391
+  - enabled: 1
+    path: Assets/03 Breakout/Scenes/03 Game Over.unity
+    guid: 9df4e83108d33b047b74ca1415743182
   m_configObjects: {}
