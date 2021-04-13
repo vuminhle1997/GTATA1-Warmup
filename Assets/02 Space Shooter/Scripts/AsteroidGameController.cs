@@ -305,10 +305,17 @@ namespace Scripts
             return maximum;
         }
 
+        /// <summary>
+        /// makes the ship invincible for a certain (default: 3.25s) time, by decreasing
+        /// the opacity, so the player can see the invincible effect
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator makeShipInvincible()
         {
             invincible = true;
-            yield return new WaitForSeconds(1.5f);
+            playerShip.shipSprite.color = new Color(255, 255, 255, 0.35f);
+            yield return new WaitForSeconds(3.25f);
+            playerShip.shipSprite.color = new Color(255, 255, 255, 255);
             invincible = false;
         }
     }
