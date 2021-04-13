@@ -165,10 +165,12 @@ MonoBehaviour:
   - {fileID: 1849420702270535319, guid: 79168661fc099804baa7dd4259d6458b, type: 3}
   powerUps:
   - {fileID: 1442091484544831765, guid: 8e5af7a6442b6e64fa87381e19538fda, type: 3}
+  - {fileID: -6977745978788340834, guid: 5465a648076b68c49a60bd27131b7108, type: 3}
   maximumSpeed: {x: 2, y: 2, z: 0}
   maximumSpin: {x: 0, y: 0, z: 2}
   playerShip: {fileID: 1493469882}
   spawnAnchor: {fileID: 889429083}
+  laser: {fileID: 3877385637195432441, guid: 90cf3b4d06e7d8f458d03e19e0dac9d7, type: 3}
 --- !u!4 &207606994
 Transform:
   m_ObjectHideFlags: 0

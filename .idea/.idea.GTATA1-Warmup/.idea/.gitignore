@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/contentModel.xml
+/.idea.GTATA1-Warmup.iml
+/modules.xml
+# Datasource local storage ignored files
+/../../../../../../../../:\Users\vumin\GTATA1-Warmup\GTATA1-Warmup\.idea\.idea.GTATA1-Warmup\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

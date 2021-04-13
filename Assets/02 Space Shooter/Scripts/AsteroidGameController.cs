@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 namespace Scripts
@@ -20,14 +22,18 @@ namespace Scripts
         [SerializeField] private Vector3 maximumSpeed, maximumSpin;
         [SerializeField] private PlayerShip playerShip;
         [SerializeField] private Transform spawnAnchor;
+        [SerializeField] private Laser laser;
 
         private List<Asteroid> activeAsteroids;
         private List<PowerUp> activePowerUps;
         private Random random;
 
+        private float shipHP = 100f;
+
         private void Start()
         {
             activeAsteroids = new List<Asteroid>();
+            activePowerUps = new List<PowerUp>();
             random = new Random();
             // spawn some initial asteroids
             for (var i = 0; i < 5; i++)
@@ -35,10 +41,15 @@ namespace Scripts
                 SpawnAsteroid(bigAsteroids, Camera.main.OrthographicBounds());
             }
 
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 3; i++)
             {
                 SpawnPowerUps(powerUps, Camera.main.OrthographicBounds());
             }
+        }
+
+        private void Update()
+        {
+            ShipIntersection(playerShip.shipSprite);
         }
 
         /// <summary>
@@ -184,7 +195,7 @@ namespace Scripts
             Destroy(laser.gameObject);
         }
 
-        public void ShipIntersection(SpriteRenderer ship)
+        private void ShipIntersection(SpriteRenderer ship)
         {
             // :thinking: this could be solved very similarly to a laser intersection
             var powerUp =
@@ -202,13 +213,43 @@ namespace Scripts
             // is powerup is hitted
             if (powerUp)
             {
+                switch (powerUp.powerUp)
+                {
+                    case PowerUpEnum.LASER:
+                        laser.enhanceLaserSize(0.2f);
+                        break;
+                    case PowerUpEnum.SHOTS:
+                        laser.enhanceLaserSpeed(100f);
+                        break;
+                    default:
+                        Debug.Log("Nothing");
+                        break;
+                }
                 Destroy(powerUp.gameObject);
             }
 
             // asteroid is hitted, take damage or DIE
             if (asteroid)
             {
+                switch (asteroid.asteroidSize)
+                {
+                    case AsteroidSize.Large:
+                        shipHP -= 50f;
+                        break;
+                    case AsteroidSize.Medium:
+                        shipHP -= 12.25f;
+                        break;
+                    case AsteroidSize.Small:
+                        shipHP -= 7.25f;
+                        break;
+                }
                 Destroy(asteroid.gameObject);
+                if (shipHP <= 0f)
+                {
+                    Destroy(playerShip);
+                    Destroy(ship);
+                    SceneManager.LoadScene("00 Game Over", LoadSceneMode.Single);
+                }
             }
         }
 

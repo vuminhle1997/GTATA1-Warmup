@@ -10,7 +10,7 @@ namespace Scripts
         private static AsteroidGameController _runGameController;
         public Vector3 initialVelocity;
         [SerializeField] private MovementObject movement;
-        [SerializeField] private float bulletSpeed;
+        [SerializeField] private float bulletSpeed = 10f;
         [SerializeField] [Range(0, 5)] private float lifetime;
         private SpriteRenderer sprite;
 
@@ -34,6 +34,17 @@ namespace Scripts
         private void LateUpdate()
         {
             _runGameController.LaserIntersection(sprite);
+        }
+
+        public void enhanceLaserSize(float value)
+        {
+            sprite.size += new Vector2(value, 0f);
+        }
+
+        public void enhanceLaserSpeed(float value)
+        {
+            bulletSpeed += value;
+            print(bulletSpeed);
         }
     }
 }

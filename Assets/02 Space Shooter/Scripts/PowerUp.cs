@@ -14,6 +14,8 @@ namespace scripts
 
     public enum PowerUpEnum
     {
-        LASER
+        LASER,
+        SHOTS,
+        HEALTH
     }
 }
