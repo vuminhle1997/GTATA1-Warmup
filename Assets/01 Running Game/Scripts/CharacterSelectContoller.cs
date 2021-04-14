@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class CharacterSelectContoller : MonoBehaviour
 {
+    [SerializeField] private RunGameManager runGameManager;
     [SerializeField] private RunCharacterController runCharacterController;
 
     [SerializeField] private Button previous;
@@ -25,7 +26,7 @@ public class CharacterSelectContoller : MonoBehaviour
     {
         previous.onClick.AddListener(delegate
         {
-            if (!Input.GetKeyDown(KeyCode.Space))
+            if (!Input.GetKeyDown(KeyCode.Space) && !runGameManager.GetHasStarted())
             {
                 ShiftLeft();
                 ChangeAppearance();
@@ -33,7 +34,7 @@ public class CharacterSelectContoller : MonoBehaviour
         });
         next.onClick.AddListener(delegate
         {
-            if (!Input.GetKeyDown(KeyCode.Space))
+            if (!Input.GetKeyDown(KeyCode.Space) && !runGameManager.GetHasStarted())
             {
                 ShiftRight();
                 ChangeAppearance();

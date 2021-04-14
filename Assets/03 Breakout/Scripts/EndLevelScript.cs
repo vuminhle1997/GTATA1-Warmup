@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class EndLevelScript : MonoBehaviour
 {
+    // active bricks inside last level
     private Brick[] bricks;
-
-    // Update is called once per frame
+    
+    // if zero bricks, show winning screen
     void Update()
     {
         bricks = gameObject.GetComponentsInChildren<Brick>();

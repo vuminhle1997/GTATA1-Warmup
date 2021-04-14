@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class Level01Script : MonoBehaviour
 {
+    // active bricks inside level 01
     private Brick[] bricks;
     
-    // Update is called once per frame
+    // if zero bricks, load 2nd level
     void Update()
     {
         bricks = gameObject.GetComponentsInChildren<Brick>();

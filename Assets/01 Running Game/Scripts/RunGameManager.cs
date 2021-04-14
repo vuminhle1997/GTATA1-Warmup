@@ -105,5 +105,10 @@ namespace Scripts
             gameController.StartGame();
             screenHider.Hide();
         }
+
+        public bool GetHasStarted()
+        {
+            return hasStarted;
+        }
     }
 }

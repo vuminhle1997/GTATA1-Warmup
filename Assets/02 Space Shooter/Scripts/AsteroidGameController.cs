@@ -235,10 +235,10 @@ namespace Scripts
                 switch (powerUp.powerUp)
                 {
                     case PowerUpEnum.SHOTS:
-                        laser.enhanceLaserSpeed(100f);
+                        laser.EnhanceLaserSpeed(100f);
                         break;
                     case PowerUpEnum.INVINCIBLE:
-                        StartCoroutine(makeShipInvincible());
+                        StartCoroutine(MakeShipInvincible());
                         break;
                     default:
                         Debug.Log("Nothing");
@@ -310,7 +310,7 @@ namespace Scripts
         /// the opacity, so the player can see the invincible effect
         /// </summary>
         /// <returns></returns>
-        private IEnumerator makeShipInvincible()
+        private IEnumerator MakeShipInvincible()
         {
             invincible = true;
             playerShip.shipSprite.color = new Color(255, 255, 255, 0.35f);

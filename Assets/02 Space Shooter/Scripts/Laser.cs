@@ -40,7 +40,7 @@ namespace Scripts
         /// enhance the laser speed by parameter "value"
         /// </summary>
         /// <param name="value"></param>
-        public void enhanceLaserSpeed(float value)
+        public void EnhanceLaserSpeed(float value)
         {
             bulletSpeed += value;
             print(bulletSpeed);
