@@ -525,6 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37c092c1fc9b0f4a9a3a36ab3026a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runGameManager: {fileID: 1333785956}
   runCharacterController: {fileID: 1376731756}
   previous: {fileID: 1958417685}
   next: {fileID: 2125375132}
@@ -566,7 +567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.2000122, y: 3.800003}
+  m_AnchoredPosition: {x: -3.2000122, y: 3.7999878}
   m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490508153
