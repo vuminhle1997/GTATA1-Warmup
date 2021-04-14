@@ -30,16 +30,17 @@ namespace Scripts
         [SerializeField] private Transform character;
         [SerializeField] private SpriteRenderer characterSprite;
         [SerializeField] private AnimationCurve jumpPosition;
-
-        [SerializeField] private Sprite jumpSprite;
-        [SerializeField] private Sprite idleSprite;
-        [SerializeField] private Sprite walkingSprite1;
-        [SerializeField] private Sprite walkingSprite2;
-        [SerializeField] private Sprite walkingSprite3;
+        
+        [SerializeField] private Sprite[] jumpSprites;
+        [SerializeField] private Sprite[] idleSprites;
+        [SerializeField] private Sprite[] walkingSprites1;
+        [SerializeField] private Sprite[] walkingSprites2;
+        [SerializeField] private CharacterSelectContoller characterSelectController;
 
         private AudioSource jumpSound;
         
         private bool canJump = true;
+        private int currPos = 0;
 
         public void Start()
         {
@@ -71,6 +72,11 @@ namespace Scripts
             }
         }
 
+        private void LateUpdate()
+        {
+            currPos = characterSelectController.GetPos();
+        }
+
         /// <summary>
         /// OnDrawGizmosSelected is a Unity editor function called when the attached GameObject is selected and used to
         /// display debugging information in the Scene view
@@ -98,7 +104,7 @@ namespace Scripts
             var highPosition = character.up * jumpHeight;
             while (totalTime < jumpDuration)
             {
-                characterSprite.sprite = jumpSprite;
+                characterSprite.sprite = jumpSprites[currPos];
                 totalTime += Time.deltaTime;
                 // what's the normalized time [0...1] this coroutine runs at
                 var sampleTime = totalTime / jumpDuration;
@@ -113,7 +119,7 @@ namespace Scripts
                 yield return null;
             }
 
-            characterSprite.sprite = idleSprite;
+            characterSprite.sprite = idleSprites[currPos];
         }
 
         // source: https://stackoverflow.com/questions/26964308/how-to-change-a-sprite-to-another-and-then-back-after-1-second
@@ -122,9 +128,9 @@ namespace Scripts
         // and proceeds to change to another sprite
         private IEnumerator WalkingAnimation()
         {
-            characterSprite.sprite = walkingSprite1;
+            characterSprite.sprite = walkingSprites1[currPos];
             yield return new WaitForSeconds(0.175f);
-            characterSprite.sprite = walkingSprite2;
+            characterSprite.sprite = walkingSprites2[currPos];
         }
     }
 }

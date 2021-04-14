@@ -9,13 +9,10 @@ public class CharacterSelectContoller : MonoBehaviour
     [SerializeField] private Button previous;
 
     [SerializeField] private Button next;
+    
+    [SerializeField] private Sprite[] idleSprites;
 
-    private Color[] colors = 
-    {
-        new Color(255, 255, 255),
-        new Color(255, 0, 0),
-        new Color(0, 255, 255)
-    };
+    private const int CHOICES = 3;
 
     private int pos = 0;
 
@@ -44,11 +41,14 @@ public class CharacterSelectContoller : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Shifts the index to left
+    /// </summary>
     private void ShiftLeft()
     {
         if (pos - 1 < 0)
         {
-            pos = colors.Length-1;
+            pos = 2;
         }
         else
         {
@@ -56,9 +56,12 @@ public class CharacterSelectContoller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shifts index to right
+    /// </summary>
     private void ShiftRight()
     {
-        if (pos + 1 >= colors.Length)
+        if (pos + 1 >= CHOICES)
         {
             pos = 0;
         }
@@ -68,8 +71,20 @@ public class CharacterSelectContoller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes the idle sprite
+    /// </summary>
     private void ChangeAppearance()
     {
-        runCharacterController.CharacterSprite.color = colors[pos];
+        runCharacterController.CharacterSprite.sprite = idleSprites[pos];
+    }
+
+    /// <summary>
+    /// Getter, returns the position
+    /// </summary>
+    /// <returns></returns>
+    public int GetPos()
+    {
+        return pos;
     }
 }

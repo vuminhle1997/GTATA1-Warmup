@@ -528,6 +528,10 @@ MonoBehaviour:
   runCharacterController: {fileID: 1376731756}
   previous: {fileID: 1958417685}
   next: {fileID: 2125375132}
+  idleSprites:
+  - {fileID: -9183657544205018418, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: 1634769560281053603, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: -4970067154865029653, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
 --- !u!1 &490508151
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -3.2000122, y: 3.800003}
   m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490508153
@@ -1195,11 +1199,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  jumpSprite: {fileID: 4723573226442331577, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
-  idleSprite: {fileID: 5298546210089967183, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
-  walkingSprite1: {fileID: -4158381282897734576, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
-  walkingSprite2: {fileID: -8577901098906674100, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
-  walkingSprite3: {fileID: -9183657544205018418, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  jumpSprites:
+  - {fileID: 4723573226442331577, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: -1418923579919195282, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: -2452500989543857958, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  idleSprites:
+  - {fileID: 5298546210089967183, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: 8370035478432864280, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: -4509013335239166420, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  walkingSprites1:
+  - {fileID: -4158381282897734576, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: -4404043426273885130, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: 3043803401794877445, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  walkingSprites2:
+  - {fileID: -8577901098906674100, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: -7424527936417855760, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  - {fileID: 2128294600738411159, guid: fcd1812c475621b47b85bf35aa3bc31b, type: 3}
+  characterSelectController: {fileID: 317403049}
 --- !u!4 &1376731757
 Transform:
   m_ObjectHideFlags: 0
